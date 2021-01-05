@@ -38,14 +38,14 @@ class MarkovMachine {
   /** return random text from chains */
 
   makeText(numWords = 100) {
-    let keys = Object.keys(this.chains); // put all keys into an array
+    let keys = Array.from(this.chains.keys()); // put all keys into an array
     let key = keys[Math.floor(Math.random() * keys.length)]; // get a random key from set of keys
     let out = [];
 
     while (out.length < numWords && key !== null) {
       out.push(key); // to start we put a random key in the output array
-      nextKey = this.chains.get(key) // then we get the array of that key
-      key = nextKey[Math.floor(Math.random() * nextKey.length)]; // and select a value from that array
+      keys = this.chains.get(key) // then we get the array of that key
+      key = keys[Math.floor(Math.random() * keys.length)]; // and select a value from that array
       // if we were to separate the first and n + 1 cases we could name variables value
     }
 
